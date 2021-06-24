@@ -43,8 +43,12 @@ class App {
     const html = `
     <li class="list" id="${list.id}" data-id="${list.id}">
         <label for="" class="list__content">${list.content}</label>
-        <img src="update.png" class="list__btn update" />
-          <img src="delete.png" class="list__btn delete" />
+        <svg class="list__btn update">
+          <use xlink:href="sprite.svg#icon-edit"></use>
+        </svg>
+        <svg class="list__btn delete">
+          <use xlink:href="sprite.svg#icon-trash-2"></use>
+        </svg>
     </li>
     `;
     this.#count++;
@@ -72,17 +76,19 @@ class App {
         this.#curList = listId;
       }
     });
+    item.value = '';
   }
 
   _updateList() {
+
     updateButton.classList.add('hidden');
     this.#listItems.set(this.#curList, item.value);
     document.getElementById(this.#curList).firstElementChild.textContent =
       this.#listItems.get(this.#curList);
-      localStorage.setItem(
-        'List',
-        JSON.stringify(Object.fromEntries(this.#listItems))
-      );
+    localStorage.setItem(
+      'List',
+      JSON.stringify(Object.fromEntries(this.#listItems))
+    );
   }
 
   _poulateList() {
@@ -90,11 +96,15 @@ class App {
       const html = `
       <li class="list" id="${+it[0]}" data-id="${+it[0]}">
       <label for="" class="list__content">${it[1]}</label>
-      <img src="update.png" class="list__btn update" />
-      <img src="delete.png" class="list__btn delete" />
+      <svg class="list__btn update">
+        <use xlink:href="sprite.svg#icon-edit"></use>
+      </svg>
+      <svg class="list__btn delete">
+        <use xlink:href="sprite.svg#icon-trash-2"></use>
+      </svg>
       </li>
       `;
-      
+
       items.insertAdjacentHTML('afterbegin', html);
       document
         .getElementById(+it[0])
@@ -121,9 +131,6 @@ class App {
       item.value = this.#listItems.get(listId);
       updateButton.classList.remove('hidden');
       this.#curList = listId;
-      
-      console.log(this.#listItems)
-      
     }
   }
 }

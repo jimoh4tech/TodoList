@@ -24,17 +24,16 @@ body {
 }
 
 @media only screen and (max-width: 25em) {
-    body {
-        padding: 2rem;
-      }
+  body {
+    padding: 2rem;
   }
+}
 .container {
   display: grid;
 
   justify-content: center;
   align-content: center;
 }
-
 
 .input {
   background-color: #fff;
@@ -50,31 +49,37 @@ body {
 }
 
 @media only screen and (max-width: 25em) {
-    .input {
-        margin: 2rem;
-        border-radius: 1rem;
-        height: 9rem;
-        width: 37rem;
-        padding: 2rem;
-      
-        margin-bottom: 7rem;
-      }
+  .input {
+    margin: 2rem;
+    border-radius: 1rem;
+    height: 9rem;
+    width: 37rem;
+    padding: 2rem;
+
+    margin-bottom: 7rem;
   }
+}
 
 .input__list {
   font-size: 2rem;
   width: 75%;
   padding: 1rem;
-  margin-right: 8%;
+  margin-right: 3%;
 }
 
 .input__btn {
   font-size: 2rem;
-  width: 15%;
+  width: 20%;
   padding: 1rem;
   border: none;
   border-radius: 0.5rem;
 }
+
+@media only screen and (max-width: 25em) {
+    .input__btn {
+        padding: .7rem;
+      }
+  }
 
 .list {
   list-style: none;
@@ -91,15 +96,15 @@ body {
 }
 
 @media only screen and (max-width: 25em) {
-    .list {
-        margin: 2rem;
-        border-radius: 1rem;
-        height: 9rem;
-        width: 37rem;
-        padding: 2rem;
-        margin-bottom: 2rem;
-      }
+  .list {
+    margin: 2rem;
+    border-radius: 1rem;
+    height: 9rem;
+    width: 37rem;
+    padding: 2rem;
+    margin-bottom: 2rem;
   }
+}
 
 .list__content {
   font-size: 2rem;
@@ -129,7 +134,17 @@ body {
   border-radius: 1rem;
   margin-left: 1rem;
 }
+.update{
+    fill: #b10df7;
+    width: 4rem;
+    height: 4rem;
+}
 
+.delete {
+    fill: orangered;
+    width: 4rem;
+    height: 4rem;
+}
 .hidden {
   display: none;
 }
