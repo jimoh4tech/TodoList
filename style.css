@@ -1,0 +1,135 @@
+/* #B10DF7 */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  font-size: 62.5%;
+  box-sizing: border-box;
+}
+
+@media only screen and (max-width: 25em) {
+  html {
+    font-size: 50%;
+  }
+}
+
+body {
+  font-family: 'Courier New', Courier, monospace;
+  background-color: #b10df7;
+  padding: 3rem;
+}
+
+@media only screen and (max-width: 25em) {
+    body {
+        padding: 2rem;
+      }
+  }
+.container {
+  display: grid;
+
+  justify-content: center;
+  align-content: center;
+}
+
+
+.input {
+  background-color: #fff;
+  border-radius: 1rem;
+  height: 11rem;
+  width: 50rem;
+  padding: 3rem;
+
+  margin-bottom: 13rem;
+
+  display: flex;
+  flex-direction: column;
+}
+
+@media only screen and (max-width: 25em) {
+    .input {
+        margin: 2rem;
+        border-radius: 1rem;
+        height: 9rem;
+        width: 37rem;
+        padding: 2rem;
+      
+        margin-bottom: 7rem;
+      }
+  }
+
+.input__list {
+  font-size: 2rem;
+  width: 75%;
+  padding: 1rem;
+  margin-right: 8%;
+}
+
+.input__btn {
+  font-size: 2rem;
+  width: 15%;
+  padding: 1rem;
+  border: none;
+  border-radius: 0.5rem;
+}
+
+.list {
+  list-style: none;
+  background-color: #fff;
+  border-radius: 1rem;
+  height: 11rem;
+  width: 50rem;
+  padding: 3rem;
+  margin-bottom: 2rem;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media only screen and (max-width: 25em) {
+    .list {
+        margin: 2rem;
+        border-radius: 1rem;
+        height: 9rem;
+        width: 37rem;
+        padding: 2rem;
+        margin-bottom: 2rem;
+      }
+  }
+
+.list__content {
+  font-size: 2rem;
+  width: 75%;
+  margin-right: 5%;
+}
+
+.list__btn {
+  background-color: #fff;
+  margin-right: 2%;
+}
+
+.btn {
+  border: none;
+  color: #fff;
+  background-color: #b10df7;
+  font-size: 2rem;
+}
+
+.btn__update {
+  margin-top: 5rem;
+  border: none;
+  color: #b10df7;
+  background-color: #fff;
+  font-size: 2rem;
+  padding: 1rem;
+  border-radius: 1rem;
+  margin-left: 1rem;
+}
+
+.hidden {
+  display: none;
+}
