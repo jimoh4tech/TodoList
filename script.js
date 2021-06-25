@@ -3,7 +3,6 @@
 const item = document.querySelector('.input__list');
 const lists = document.querySelector('.list');
 const addButton = document.querySelector('.add');
-const updateButton = document.querySelector('.btn__update');
 const items = document.querySelector('.item');
 
 class List {
@@ -27,68 +26,67 @@ class App {
     this.#count = this.#listItems.size + 1;
     this._poulateList();
     addButton.addEventListener('click', this._newList.bind(this));
-    updateButton.addEventListener('click', this._updateList.bind(this));
   }
 
   _newList() {
-    let list;
-    if (!item.value) return alert('Kindly enter some text!');
-    list = new List(this.#count, item.value);
-    this.#listItems.set(+list.id, list.content);
+    if (addButton.textContent === 'Add') {
+      let list;
+      if (!item.value) return alert('Kindly enter some text!');
+      list = new List(this.#count, item.value);
+      this.#listItems.set(+list.id, list.content);
 
-    localStorage.setItem(
-      'List',
-      JSON.stringify(Object.fromEntries(this.#listItems))
-    );
-    const html = `
-    <li class="list" id="${list.id}" data-id="${list.id}">
-        <label for="" class="list__content">${list.content}</label>
-        <svg class="list__btn update">
-          <use xlink:href="sprite.svg#icon-edit"></use>
-        </svg>
-        <svg class="list__btn delete">
-          <use xlink:href="sprite.svg#icon-trash-2"></use>
-        </svg>
-    </li>
-    `;
-    this.#count++;
+      localStorage.setItem(
+        'List',
+        JSON.stringify(Object.fromEntries(this.#listItems))
+      );
+      const html = `
+      <li class="list" id="${list.id}" data-id="${list.id}">
+          <label for="" class="list__content">${list.content}</label>
+          <svg class="list__btn update">
+            <use xlink:href="sprite.svg#icon-edit"></use>
+          </svg>
+          <svg class="list__btn delete">
+            <use xlink:href="sprite.svg#icon-trash-2"></use>
+          </svg>
+      </li>
+      `;
+      this.#count++;
 
-    items.insertAdjacentHTML('afterbegin', html);
-    items.firstElementChild.addEventListener('click', e => {
-      const del = e.target.closest('.delete');
-      const update = e.target.closest('.update');
+      items.insertAdjacentHTML('afterbegin', html);
+      items.firstElementChild.addEventListener('click', e => {
+        const del = e.target.closest('.delete');
+        const update = e.target.closest('.update');
 
-      if (!del && !update) return;
+        if (!del && !update) return;
 
-      if (del) {
-        items.removeChild(del.closest('.list'));
-        this.#listItems.delete(+del.closest('.list').dataset.id);
+        if (del) {
+          items.removeChild(del.closest('.list'));
+          this.#listItems.delete(+del.closest('.list').dataset.id);
+          localStorage.setItem(
+            'List',
+            JSON.stringify(Object.fromEntries(this.#listItems))
+          );
+        }
+
+        if (update) {
+          const listId = +update.closest('.list').dataset.id;
+          item.value = this.#listItems.get(listId);
+          this.#curList = listId;
+        }
+      });
+    } else {
+      if (addButton.textContent === 'Done') {
+        this.#listItems.set(this.#curList, item.value);
+        document.getElementById(this.#curList).firstElementChild.textContent =
+          this.#listItems.get(this.#curList);
         localStorage.setItem(
           'List',
           JSON.stringify(Object.fromEntries(this.#listItems))
         );
+        addButton.textContent = 'Add'
       }
-
-      if (update) {
-        const listId = +update.closest('.list').dataset.id;
-        item.value = this.#listItems.get(listId);
-        updateButton.classList.remove('hidden');
-        this.#curList = listId;
-      }
-    });
+    }
     item.value = '';
-  }
-
-  _updateList() {
-
-    updateButton.classList.add('hidden');
-    this.#listItems.set(this.#curList, item.value);
-    document.getElementById(this.#curList).firstElementChild.textContent =
-      this.#listItems.get(this.#curList);
-    localStorage.setItem(
-      'List',
-      JSON.stringify(Object.fromEntries(this.#listItems))
-    );
   }
 
   _poulateList() {
@@ -127,10 +125,16 @@ class App {
     }
 
     if (update) {
-      const listId = update.closest('.list').dataset.id;
-      item.value = this.#listItems.get(listId);
-      updateButton.classList.remove('hidden');
-      this.#curList = listId;
+      if (addButton.textContent === 'Add') {
+        const listId = update.closest('.list').dataset.id;
+        item.value = this.#listItems.get(listId);
+        this.#curList = listId;
+        addButton.textContent = 'Done';
+      } else {
+        if (addButton.textContent === 'Done') {
+          addButton.textContent = 'Add';
+        }
+      }
     }
   }
 }

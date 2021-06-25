@@ -42,7 +42,7 @@ body {
   width: 50rem;
   padding: 3rem;
 
-  margin-bottom: 13rem;
+  margin-bottom: 7rem;
 
   display: flex;
   flex-direction: column;
@@ -56,7 +56,7 @@ body {
     width: 37rem;
     padding: 2rem;
 
-    margin-bottom: 7rem;
+    margin-bottom: 5rem;
   }
 }
 
